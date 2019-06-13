@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  ngafid20_serv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ngafid20_serv
+    ports:
+      - 80:80
+    volumes:
+      - .:/ngafid20
+    #links:
+    #environment:
+  db:
+    image: mysql:5.5
+    volumes:
+      - 'ngafid-mysql:/var/lib/mysql'
+    environment:
+      MYSQL_DATABASE: ngafid_db
+      MYSQL_USER: ngafidadmin
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3307:3306
+
+volumes:
+  ngafid-mysql: {}
